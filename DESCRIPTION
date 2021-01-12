@@ -1,0 +1,20 @@
+Package: ggcmi2agmip
+Title: Ggcmi outputs to Agmip format
+Authors@R: 
+    person("David Meng-Chuen",  "Chen", email = "david.chen@pik-potsdam.de", role = c("aut","cre"))
+Description: This package provides helper functions to convert and also plot GGCMI outputs from ISIMIP 3b to national level indicators required for AgMIP global econ models
+Version: 0.0.0.9000
+License: GPL-3 
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports:
+    dplyr,
+    ncdf4,
+    raster,
+    data.table,
+    tidyr,
+    readxl,
+    methods,
+    tibble
