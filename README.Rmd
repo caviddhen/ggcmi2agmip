@@ -1,0 +1,70 @@
+---
+title: "Processing GGCMI ISIMIP3b outputs for AgMIP"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+author: David M Chen (david.chen@pik-potsdam.de)
+output:
+  rmarkdown::github_document:
+    toc: yes
+---
+
+
+# ggcmi2agmip
+
+ggcmi2agmip bundles the functions required to process GGCMI outputs from  ISIMIP3b, located either on the PIK/ISIMIP cluster or locally. If run locally, note that the path structure for the GGCMI data needs to be set as on cluster, i.e. starting with the crop model name as so: "/LPJmL/phase3b/mri-esm2-0/ssp585/mai" (/model name/phase3b/climate model/ssp scenario/crop) . Spam files do not require specific folder structure as they are single files.
+
+## Installation
+
+Install the development version from [GitHub](https://github.com/caviddhen) with:
+
+```{r, eval=FALSE}
+#install package
+devtools::install_github("caviddhen/ggcmi2agmip")
+library(ggcmi2agmip)
+```
+
+## Processing
+Tne processing is run using the processIsimip() function, with preferred paths and parameters. See default configuration below for running on cluster. Parameters that end in ".path" are paths where the spam files are found on cluster. If processing is done locally, please see Files required... below
+
+### Parameters
+
+**general.path**: general path where the crop model outputs are stored, described as above
+
+**models**: chooses the crop model to process
+
+**rcpso**: rcp scenarios
+
+**gcms**: climate model
+
+**co2_scen**: "2015co2" (co2 effect off) or "default" (co2 effect on)
+
+**time**: time scale to process (comparing 30 year average centred around 2030,2050, or 2080.)
+
+### Default Cluster Processing
+```{r, eval=FALSE}
+# run processing
+processIsimip(general.path = "/p/projects/macmit/data/GGCMI/AgMIP.output/",
+                         models = c("LPJmL","EPIC-IIASA","pDSSAT","GEPIC","LPJ-GUESS"),
+                         rcpso = c("historical","picontrol","ssp126","ssp585"),
+                         gcms = c("gfdl-esm4","mpi-esm1-2-hr","mri-esm2-0","ukesm1-0-ll"),
+                         co2_scen = c("2015co2","default"),
+                         time = c("2030s","2050s","2085s", "2100"),
+                         lpj.spam.path = "/p/projects/macmit/data/GGCMI/fast-track/yields/yield_shifter_econ_models/some_spam/",
+              adm.path= "/p/projects/macmit/data/GGCMI/AgMIP.output/processed/masks/aggr/",
+                         rice.path = "/p/projects/macmit/data/GGCMI/AgMIP.input/phase3/crop_calendar/",
+                         wheat.path = "/p/projects/macmit/data/GGCMI/AgMIP.input/phase3/landuse/winter_spring_wheat_separation/",
+                          output.path = "/p/projects/landuse/users/davidch/AgMIP_impacts/ISIMIP3b")
+```
+
+
+
+### Files required for local processing
+
+If processing on a local computer, then spam files are required from cluster, with the path to these files listed in the default settings above.
+
+**lpjml spam for Irrigated and Rainfed cropping area**: lpj.spam.path/*crop*".R_physical_area" and ".I_physical_area" for all crops
+
+**adm file for mapping country names and codes**: adm.path/"gadm0.meta.csv"
+
+**rice spam for first and second cropping of rice**: rice.path/"_rf_ggcmi_crop_calendar_phase3_v1.01.nc4" and "_ir_ggcmi_crop_calendar_phase3_v1.01.nc4
+
+**wheat spam for spring and winter wheat **: wheat.path/winter_and_spring_wheat_areas_phase3.nc4

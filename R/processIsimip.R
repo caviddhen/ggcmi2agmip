@@ -12,7 +12,7 @@
 
 
 
-processIsimip <- function(rcpso,models, gcms, co2_scen, irr_scen, time,
+processIsimip <- function(rcpso,models, gcms, co2_scen, irr_scen = c("noirr","firr"), time,
                           general.path, lpj.spam.path, output.path, adm.path, rice.path,wheat.path){
 
   # crops to process ---------------------
@@ -52,8 +52,8 @@ processIsimip <- function(rcpso,models, gcms, co2_scen, irr_scen, time,
   readf3d.e <- c(1)
   readl3d.e <- c(86)
 
-  ts <- c("2030s","2050s","2085s", "2100")
-  grs <- c(30,50,85,100)
+  ts <- c("2030s","2050s","2085s")
+  grs <- c(30,50,85)
 
   #read in Country name data --------------
 
