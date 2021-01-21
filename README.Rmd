@@ -68,3 +68,18 @@ If processing on a local computer, then spam files are required from cluster, wi
 **rice spam for first and second cropping of rice**: rice.path/"_rf_ggcmi_crop_calendar_phase3_v1.01.nc4" and "_ir_ggcmi_crop_calendar_phase3_v1.01.nc4
 
 **wheat spam for spring and winter wheat **: wheat.path/winter_and_spring_wheat_areas_phase3.nc4
+
+
+## Output Files
+
+processIsimip() saves the processed output files in the output.path given. All values are in calories dry matter. Currently, the function produces, for each time period, for co2 scenario, ssp scenario, and for irrigated and rainfed crops, a table of crop model and crop by country:
+
+**ISI-MIP3_production_changes**: total amount of calories produced in future time vs 2000s
+
+**ISI-MIP3_percent_changes_30-year_average**: Average percent change over 30 years for time step t vs 2000s
+
+**ISI-MIP3_percent_changes_30-year_annual**: Annual percent change over 30 years for time step t vs 2000s
+
+**ISI-MIP3_growth_rates_30-year_average**: Average growth rates by crop model and crop for time step t vs 2000s
+
+**ISI-MIP3_percent_shocks_30-year_annual**: The change from one year to the previous year in the 30-year time step t

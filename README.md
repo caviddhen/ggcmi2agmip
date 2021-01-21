@@ -1,7 +1,7 @@
 Processing GGCMI ISIMIP3b outputs for AgMIP
 ================
 David M Chen (<david.chen@pik-potsdam.de>)
-20 January, 2021
+21 January, 2021
 
   - [ggcmi2agmip](#ggcmi2agmip)
       - [Installation](#installation)
@@ -10,6 +10,7 @@ David M Chen (<david.chen@pik-potsdam.de>)
           - [Default Cluster Processing](#default-cluster-processing)
           - [Files required for local
             processing](#files-required-for-local-processing)
+      - [Output Files](#output-files)
 
 # ggcmi2agmip
 
@@ -92,3 +93,25 @@ rice.path/"\_rf\_ggcmi\_crop\_calendar\_phase3\_v1.01.nc4" and
 
 **wheat spam for spring and winter wheat **:
 wheat.path/winter\_and\_spring\_wheat\_areas\_phase3.nc4
+
+## Output Files
+
+processIsimip() saves the processed output files in the output.path
+given. All values are in calories dry matter. Currently, the function
+produces, for each time period, for co2 scenario, ssp scenario, and for
+irrigated and rainfed crops, a table of crop model and crop by country:
+
+**ISI-MIP3\_production\_changes**: total amount of calories produced in
+future time vs 2000s
+
+**ISI-MIP3\_percent\_changes\_30-year\_average**: Average percent change
+over 30 years for time step t vs 2000s
+
+**ISI-MIP3\_percent\_changes\_30-year\_annual**: Annual percent change
+over 30 years for time step t vs 2000s
+
+**ISI-MIP3\_growth\_rates\_30-year\_average**: Average growth rates by
+crop model and crop for time step t vs 2000s
+
+**ISI-MIP3\_percent\_shocks\_30-year\_annual**: The change from one year
+to the previous year in the 30-year time step t
